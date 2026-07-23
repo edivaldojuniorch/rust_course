@@ -10,16 +10,20 @@ pub mod day05{
 
         vector_creation_1();
 
-        let v3 = vector_generation_0();
+        let v3: Vec<i32> = vector_generation_0();
         print!("All v3 elements (coming from the child fn): {:?}\n", v3);
         
         let v3_1 = consume_vector_first_item(&v3);
         print!("First v3 element (coming from the child fn), reference user: {:?}\n", v3_1);
         
         
-        let v3_select = selecting_vector_item(&v3, 2);
-        print!("Selected v3 element (coming from the child fn), reference user: {:?}\n", v3_select);
+        let v3_select = selecting_vector_item(&v3, 1);
+        print!("Selected v3 element (coming from the child fn), reference user: {:?}\n", &v3_select);
         
+        vector_iteraction(&v3);
+
+        vector_iteraction_full(&v3);
+
 
     }
 
@@ -56,7 +60,33 @@ pub mod day05{
     }
 
     fn selecting_vector_item(v:&Vec<i32>, position: usize) -> (Vec<i32>,i32) {
-        ( v.clone(), v[position]  )
+
+        let selected: Option<&i32> = v.get(position);
+
+        match selected{
+            Some(item) => ( v.clone(), *item),
+            None =>{
+                println!("There is no third element.");
+                (v.clone(), -1)
+            } 
+        }
+
+    }
+
+    fn vector_iteraction(v: &Vec<i32>) {
+        for item in v{
+            println!("Item: {}", item);
+
+        }
+
+    }
+    
+    fn vector_iteraction_full(v: &Vec<i32>) {
+        print!("printing from the 'vector_iteraction_full'\n");
+        for item in v{
+            println!("Item: {}", item);
+
+        }
 
     }
 
