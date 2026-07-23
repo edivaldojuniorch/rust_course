@@ -1,4 +1,6 @@
 pub mod day05{
+    use std::vec;
+
     pub fn day_description(){
         println!("--------------------------------");
         println!("------ DAY 05 -----");
@@ -24,6 +26,8 @@ pub mod day05{
 
         vector_iteraction_full(&v3);
 
+        
+        vector_drop_value(&v3, 0)
 
     }
 
@@ -89,6 +93,24 @@ pub mod day05{
         }
 
     }
+        
+    fn vector_drop_value(v: &Vec<i32>, drop_position: usize) {
+
+        let v0 = &v.clone();
+
+        print!("printing from the 'vector_drop_value'\n");
+
+        let selected: Option<&i32> = v0.get(drop_position);
+
+        match selected{
+            Some(item) => print!(" Item found in the position {}: {}\n",drop_position,  *item),
+            None => println!("Element not found in the position {}!", drop_position)
+ 
+        }
+    
+
+    }
 
 
-}
+    }
+
